@@ -52,9 +52,20 @@ button:hover {
 
 <div id="valentine-message">Happy Valentine's Day</div>
 
-<div id="countdown">シンイに会うまであと：Loading...</div>
+<div id="countdown">シンイに会うまであと：<br>Loading...</div>
 
-<button onclick="location.href='letter.html';">TO GAKU</button>
+<button onclick="checkPassword()">TO GAKU</button>
+
+<script>
+function checkPassword() {
+  var password = prompt("パスワードを入力してください", "");
+  if (password == "2323") {
+    window.location.href = 'letter.html'; // 正しいパスワードで手紙のページにリダイレクト
+  } else {
+    alert("パスワードが間違っています。"); // パスワードが間違っている場合のメッセージ
+  }
+}
+</script>
 
 <script>
 const countToDate = new Date(new Date().getFullYear(), 1, 26, 18, 15, 0).getTime();
@@ -67,7 +78,7 @@ function updateCountdown() {
   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  document.getElementById("countdown").innerHTML = `シンイに会うまであと：${days}日 ${hours}時間 ${minutes}分 ${seconds}秒`;
+  document.getElementById("countdown").innerHTML = `シンイに会うまであと：<br>${days}日 ${hours}時間 ${minutes}分 ${seconds}秒`;
 
   if (distance < 0) {
     clearInterval(interval);
